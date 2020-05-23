@@ -1,8 +1,9 @@
 import numpy as np
+from config import Config
 
 class ReplayBuffer(object):
-    def __init__(self, max_size, input_shape, n_actions):
-        self.mem_size = max_size
+    def __init__(self, input_shape, n_actions):
+        self.mem_size = Config.max_mem
         self.mem_cntr = 0
         self.state_memory = np.zeros((self.mem_size, *input_shape),
                                      dtype=np.float32)
