@@ -22,6 +22,9 @@ class DuelingDDQNAgent(object):
         self.action_space = [i for i in range(n_actions)]
         self.learn_step_counter = 0
 
+        print("eps_dec =", eps_dec)
+        print("eps_min =", eps_min)
+        print("lr = ", lr)
         self.memory = ReplayBuffer(mem_size, input_dims, n_actions)
 
         self.q_eval = DuelingDeepQNetwork(self.lr, self.n_actions,
