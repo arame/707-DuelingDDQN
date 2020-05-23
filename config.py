@@ -1,6 +1,6 @@
 from device import Device
 class Config:
-    n_games = 300
+    n_games = 1
     lr = 0.0001
     gamma = 0.99
     eps_min = 0.01

@@ -4,13 +4,13 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 import numpy as np
+from config import Config
 
 class DuelingDeepQNetwork(nn.Module):
-    def __init__(self, lr, n_actions, name, input_dims, chkpt_dir):
+    def __init__(self, n_actions, name, input_dims):
         super(DuelingDeepQNetwork, self).__init__()
 
-        self.checkpoint_dir = chkpt_dir
-        self.checkpoint_file = os.path.join(self.checkpoint_dir, name)
+        self.checkpoint_file = os.path.join(Config.chkpt_dir, name)
 
         self.conv1 = nn.Conv2d(input_dims[0], 32, 8, stride=4)
         self.conv2 = nn.Conv2d(32, 64, 4, stride=2)
@@ -25,7 +25,7 @@ class DuelingDeepQNetwork(nn.Module):
 
         self.optimizer = optim.RMSprop(self.parameters(), lr=lr)
         self.loss = nn.MSELoss()
-        self.device = T.device('cuda:0' if T.cuda.is_available() else 'cpu')
+        self.device = T.device(Config.device)
         self.to(self.device)
 
 
