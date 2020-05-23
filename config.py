@@ -1,10 +1,10 @@
 from device import Device
 class Config:
-    n_games = 1
+    n_games = 300
     lr = 0.0001
     gamma = 0.99
     eps_min = 0.01
-    eps_dec = 5e-7
+    eps_dec = 5e-6
     epsilon = 1.0
     max_mem = 5000
     repeat = 4
