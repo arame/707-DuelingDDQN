@@ -9,7 +9,7 @@ class Config:
     max_mem = 5000
     repeat = 4
     batch_size = 32
-    replace = 1000
+    replace_target_cnt = 1000
     env_name = 'PongNoFrameskip-v4'
     path = 'models'
     load_checkpoint = False
