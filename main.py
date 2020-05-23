@@ -19,7 +19,7 @@ if load_checkpoint:
 n_steps = 0
 scores, eps_history, steps_array = [], [], []
 
-for i in range(config.n_games):
+for i in range(Config.n_games):
     done = False
     observation = env.reset()
 
