@@ -23,7 +23,7 @@ class DuelingDeepQNetwork(nn.Module):
         self.V = nn.Linear(512, 1)
         self.A = nn.Linear(512, n_actions)
 
-        self.optimizer = optim.RMSprop(self.parameters(), lr=lr)
+        self.optimizer = optim.RMSprop(self.parameters(), lr=Config.lr)
         self.loss = nn.MSELoss()
         self.device = T.device(Config.device)
         self.to(self.device)
