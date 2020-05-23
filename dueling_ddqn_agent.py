@@ -12,7 +12,7 @@ class DuelingDDQNAgent(object):
         self.action_space = [i for i in range(n_actions)]
         self.learn_step_counter = 0
 
-        self.memory = ReplayBuffer(mem_size, input_dims, n_actions)
+        self.memory = ReplayBuffer(input_dims, n_actions)
         name_root = Config.env_name+'_'+ Config.algo
         self.q_eval = DuelingDeepQNetwork(self.n_actions, input_dims=self.input_dims, name=name_root + '_q_eval')
         self.q_next = DuelingDeepQNetwork(self.n_actions, input_dims=self.input_dims, name=name_root + '_q_next')
