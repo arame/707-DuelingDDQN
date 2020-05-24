@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 import gym
 from config import Config
 
-def plot_learning_curve(x, scores, epsilons, lines=None):
+def plot_learning_curve(x, scores, epsilons):
+    lines=None
     fig=plt.figure()
     ax=fig.add_subplot(111, label="1")
     ax2=fig.add_subplot(111, label="2", frame_on=False)
@@ -39,7 +40,9 @@ class RepeatActionAndMaxFrame(gym.Wrapper):
     """ modified from:
         https://github.com/PacktPublishing/Deep-Reinforcement-Learning-Hands-On/blob/master/Chapter06/lib/wrappers.py
     """
-    def __init__(self, env=None, repeat=4):
+    def __init__(self):
+        env=None
+        repeat=4
         super(RepeatActionAndMaxFrame, self).__init__(env)
         self.repeat = repeat
         self.shape = env.observation_space.low.shape
@@ -66,16 +69,14 @@ class RepeatActionAndMaxFrame(gym.Wrapper):
         return obs
 
 class PreprocessFrame(gym.ObservationWrapper):
-    def __init__(self, shape, env=None):
+    def __init__(self, shape):
+        env = None
         super(PreprocessFrame, self).__init__(env)
         self.shape=(shape[2], shape[0], shape[1])
-        self.observation_space = gym.spaces.Box(low=0, high=1.0,
-                                              shape=self.shape,dtype=np.float32)
+        self.observation_space = gym.spaces.Box(low=0, high=1.0, shape=self.shape,dtype=np.float32)
     def observation(self, obs):
         new_frame = cv2.cvtColor(obs, cv2.COLOR_RGB2GRAY)
-        resized_screen = cv2.resize(new_frame, self.shape[1:],
-                                    interpolation=cv2.INTER_AREA)
-
+        resized_screen = cv2.resize(new_frame, self.shape[1:], interpolation=cv2.INTER_AREA)
         new_obs = np.array(resized_screen, dtype=np.uint8).reshape(self.shape)
         new_obs = np.swapaxes(new_obs, 2,0)
         new_obs = new_obs / 255.0
@@ -104,7 +105,9 @@ class StackFrames(gym.ObservationWrapper):
 
         return obs
 
-def make_env(env_name, shape=(84,84,1), skip=4):
+def make_env(env_name):
+    shape=(84,84,1)
+    skip=4
     env = gym.make(env_name)
     env = RepeatActionAndMaxFrame(env, skip)
     env = PreprocessFrame(shape, env)
