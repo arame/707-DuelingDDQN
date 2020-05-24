@@ -86,7 +86,7 @@ class DuelingDDQNAgent(object):
         self.q_eval.optimizer.step()
         self.learn_step_counter += 1
 
-        self.decrement_epsilon()
+        self.decay_epsilon()
 
     def save_models(self):
         self.q_eval.save_checkpoint()
