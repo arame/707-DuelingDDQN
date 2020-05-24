@@ -62,13 +62,13 @@ class Agent(object):
         states, actions, rewards, states_new, dones = self.sample_memory()
         indices = np.arange(Config.batch_size)
 
-        V_s, A_s = self.q_eval.forward(states)
-        V_s_new, A_s_new = self.q_next.forward(states_new)
-        V_s_eval, A_s_eval = self.q_eval.forward(states_new)
+        Value_stream, Advantage_stream = self.q_eval.forward(states)
+        Value_stream_new, Advantage_stream_new = self.q_next.forward(states_new)
+        Value_stream_eval, Advantage_stream_eval = self.q_eval.forward(states_new)
 
-        q_pred = T.add(V_s, (A_s - A_s.mean(dim=1, keepdim=True)))[indices, actions]
-        q_next = T.add(V_s_new, (A_s_new - A_s_new.mean(dim=1, keepdim=True)))
-        q_eval = T.add(V_s_eval, (A_s_eval - A_s_eval.mean(dim=1,keepdim=True)))
+        q_pred = T.add(Value_stream, (Advantage_stream - Advantage_stream.mean(dim=1, keepdim=True)))[indices, actions]
+        q_next = T.add(Value_stream_new, (Advantage_stream_new - Advantage_stream_new.mean(dim=1, keepdim=True)))
+        q_eval = T.add(Value_stream_eval, (Advantage_stream_eval - Advantage_stream_eval.mean(dim=1,keepdim=True)))
 
         max_actions = T.argmax(q_eval, dim=1)
         q_next[dones] = 0.0

@@ -40,8 +40,8 @@ class RepeatActionAndMaxFrame(gym.Wrapper):
     """ modified from:
         https://github.com/PacktPublishing/Deep-Reinforcement-Learning-Hands-On/blob/master/Chapter06/lib/wrappers.py
     """
-    def __init__(self):
-        env=None
+    def __init__(self, env=None):
+        
         repeat=4
         super(RepeatActionAndMaxFrame, self).__init__(env)
         self.repeat = repeat
@@ -69,8 +69,7 @@ class RepeatActionAndMaxFrame(gym.Wrapper):
         return obs
 
 class PreprocessFrame(gym.ObservationWrapper):
-    def __init__(self, shape):
-        env = None
+    def __init__(self, shape, env=None):
         super(PreprocessFrame, self).__init__(env)
         self.shape=(shape[2], shape[0], shape[1])
         self.observation_space = gym.spaces.Box(low=0, high=1.0, shape=self.shape,dtype=np.float32)
