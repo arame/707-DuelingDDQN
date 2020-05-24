@@ -4,7 +4,7 @@ class Config:
     lr = 0.0001
     gamma = 0.99
     eps_min = 0.01
-    eps_dec = 5e-6
+    eps_dec = 1e-6
     epsilon = 1.0
     max_mem = 5000
     repeat = 4
@@ -31,6 +31,9 @@ class Config:
         print("** settings **")
         print("number of games = ", Config.n_games)
         print("learning rate (alpha) = ", Config.lr)
+        print("epsilon start = ", Config.epsilon)
+        print("epsilon minimum = ", Config.eps_min)
+        print("epsilon decrement = ", Config.eps_dec)
         print("gamma = ", Config.gamma)
         print("batch_size = ", Config.batch_size)
         print("environment = ", Config.env_name)
