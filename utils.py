@@ -40,9 +40,7 @@ class RepeatActionAndMaxFrame(gym.Wrapper):
     """ modified from:
         https://github.com/PacktPublishing/Deep-Reinforcement-Learning-Hands-On/blob/master/Chapter06/lib/wrappers.py
     """
-    def __init__(self, env=None):
-        
-        repeat=4
+    def __init__(self, env=None, repeat=4):
         super(RepeatActionAndMaxFrame, self).__init__(env)
         self.repeat = repeat
         self.shape = env.observation_space.low.shape
