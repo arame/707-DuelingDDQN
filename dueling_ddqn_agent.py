@@ -47,8 +47,8 @@ class DuelingDDQNAgent(object):
         if Config.replace_target_cnt is not None and self.learn_step_counter % Config.replace_target_cnt == 0:
             self.q_next.load_state_dict(self.q_eval.state_dict())
 
-    def decrement_epsilon(self):
-        new_value = self.epsilon - Config.eps_dec
+    def decay_epsilon(self):
+        new_value = self.epsilon * Config.eps_decay
         if new_value > Config.eps_min:
             self.epsilon = new_value
 
