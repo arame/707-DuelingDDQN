@@ -33,7 +33,7 @@ class Config:
         print("learning rate (alpha) = ", Config.lr)
         print("epsilon start = ", Config.epsilon)
         print("epsilon minimum = ", Config.eps_min)
-        print("epsilon decay = ", Config.eps_dec)
+        print("epsilon decay = ", Config.eps_decay)
         print("gamma = ", Config.gamma)
         print("batch_size = ", Config.batch_size)
         print("environment = ", Config.env_name)
